@@ -36,29 +36,22 @@ def test_ebay_e2e(page, test_data, query: str, max_price: float, limit: int):
     )
     assert urls, f"No items found for query='{query}' under ${max_price}"
 
-    # Step 3: Add items to cart; qty=0 means the product was out of stock — skip it.
-    quantities = []
-    for url in urls:
-        qty = item_page.add_to_cart_from_url(url, search_url)
-        if qty > 0:
-            quantities.append(qty)
+    # Step 3: GAP 4 — use the named add_items_to_cart method (assignment signature)
+    quantities = item_page.add_items_to_cart(urls, search_url)
 
     assert quantities, (
         "No items could be added to cart — all products were out of stock.\n"
         "If this is a new account, make sure the registration email has been verified."
     )
 
-    # Step 4: Assert cart total — threshold uses real quantities actually added
-    total     = cart_page.get_total(str(data.cart_url))
-    assert total > 0, (
+    # Step 4: GAP 3 — use the named assert_cart_total_not_exceeds method (assignment signature)
+    assert cart_page.get_total(str(data.cart_url)) > 0, (
         "Cart total is $0.00 — items were not saved to the cart.\n"
         "Likely cause: a required product option (size/colour) was not selected, "
         "or the account email has not been verified yet."
     )
-    threshold = data.budget_per_item * len(quantities)
-    assert total <= threshold, (
-        f"Cart total ${total:.2f} exceeds budget "
-        f"${threshold:.2f} ({len(quantities)} items × ${data.budget_per_item:.2f})"
+    cart_page.assert_cart_total_not_exceeds(
+        str(data.cart_url), data.budget_per_item, len(quantities)
     )
 
 

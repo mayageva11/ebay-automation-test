@@ -62,3 +62,15 @@ class CartPage(BasePage):
         raise ValueError(
             "Could not read cart total: cart may be empty or the selector has changed"
         )
+
+    # GAP 3: assignment signature assertCartTotalNotExceeds(budgetPerItem, itemsCount)
+    @allure.step("Assert cart total does not exceed budget")
+    def assert_cart_total_not_exceeds(
+        self, cart_url: str, budget_per_item: float, items_count: int
+    ) -> None:
+        total = self.get_total(cart_url)
+        threshold = budget_per_item * items_count
+        assert total <= threshold, (
+            f"Cart total ${total:.2f} exceeds budget "
+            f"${threshold:.2f} ({items_count} items × ${budget_per_item:.2f})"
+        )

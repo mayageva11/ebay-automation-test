@@ -26,6 +26,9 @@ class BasePage:
             )
         logger.info("Screenshot saved: %s", path)
 
+    # GAP 5: decorated with @allure.step so every added item appears as a
+    # named step in the Allure report alongside its screenshot.
+    @allure.step("Log item added: {item_name}")
     def log_item_added(self, item_name: str, url: str) -> None:
         logger.info("Added to cart | item=%s | url=%s", item_name, url)
         allure.attach(

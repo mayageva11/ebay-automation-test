@@ -8,8 +8,9 @@ from utils.price_parser import PriceParser
 class SearchPage(BasePage):
     SEARCH_INPUT     = "input[name='search']"
     SEARCH_BUTTON    = "button.type-submit"
-    ITEM_LINK        = "//div[contains(@class,'product-thumb')]//h4/a"
-    ITEM_PRICE       = "//div[contains(@class,'product-thumb')]//*[contains(@class,'price')]"
+    ITEM_LINK        = "//div[contains(@class,'product-thumb')]//h4/a"           # XPath — required by assignment
+    ITEM_PRICE       = "//div[contains(@class,'product-thumb')]//*[contains(@class,'price')]"  # XPath — required by assignment
+    PRICE_MIN_INPUT  = "input#input-min"   # GAP 2: fill with "0" alongside max filter
     PRICE_MAX_INPUT  = "input#input-max"
     APPLY_FILTER_BTN = "button#button-search"
     NEXT_PAGE        = "ul.pagination li a[aria-label='Next']"
@@ -59,9 +60,12 @@ class SearchPage(BasePage):
         )
         self.wait_for_load()
 
-        # Apply price filter if the control exists on the page;
-        # code-side price check in _collect_page_items always runs regardless.
+        # Apply min/max price filter if the controls exist on the page.
+        # GAP 2: both PRICE_MIN_INPUT and PRICE_MAX_INPUT are filled when available.
+        # Code-side price check in _collect_page_items always runs regardless.
         if self.page.is_visible(self.PRICE_MAX_INPUT):
+            if self.page.is_visible(self.PRICE_MIN_INPUT):
+                self.page.fill(self.PRICE_MIN_INPUT, "0")
             self.page.fill(self.PRICE_MAX_INPUT, str(max_price))
             self.page.wait_for_selector(self.APPLY_FILTER_BTN, state="visible")
             self.page.click(self.APPLY_FILTER_BTN)

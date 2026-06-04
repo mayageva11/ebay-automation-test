@@ -20,6 +20,17 @@ class ItemPage(BasePage):
     def __init__(self, page: Page) -> None:
         super().__init__(page)
 
+    # GAP 4: assignment signature addItemsToCart(urls) as a named method
+    @allure.step("Add {urls} items to cart")
+    def add_items_to_cart(self, urls: list[str], search_url: str) -> list[int]:
+        """Returns list of quantities actually added (0-entries excluded)."""
+        quantities = []
+        for url in urls:
+            qty = self.add_to_cart_from_url(url, search_url)
+            if qty > 0:
+                quantities.append(qty)
+        return quantities
+
     @allure.step("Add to cart: {url}")
     def add_to_cart_from_url(self, url: str, search_url: str) -> int:
         self.page.goto(url)
@@ -70,6 +81,8 @@ class ItemPage(BasePage):
             self.page.goto(search_url)
             return 0
 
+        # GAP 5: take_screenshot is called after successful add,
+        # then log_item_added (decorated with @allure.step) records it as a named step.
         self.take_screenshot(f"added_to_cart_{item_name}")
         self.log_item_added(item_name, url)
 
