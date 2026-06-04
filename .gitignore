@@ -1,0 +1,7 @@
+artifacts/
+allure-results/
+__pycache__/
+.pytest_cache/
+*.pyc
+# Contains real credentials — never commit this file
+test_data.json

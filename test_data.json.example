@@ -1,0 +1,19 @@
+{
+  "base_url": "https://ecommerce-playground.lambdatest.io",
+  "login_url": "https://ecommerce-playground.lambdatest.io/index.php?route=account/login",
+  "cart_url": "https://ecommerce-playground.lambdatest.io/index.php?route=checkout/cart",
+  "credentials": {
+    "username": "your_email@example.com",
+    "password": "YourPassword"
+  },
+  "search": [
+    { "query": "HP",    "max_price": 200, "limit": 2 },
+    { "query": "apple", "max_price": 220, "limit": 2 }
+  ],
+  "budget_per_item": 500,
+  "timeouts": {
+    "page_load": 30000,
+    "element":   10000,
+    "navigation": 15000
+  }
+}

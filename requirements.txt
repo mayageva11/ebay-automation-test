@@ -1,0 +1,5 @@
+playwright==1.60.0
+pytest==9.0.3
+pytest-playwright==0.8.0
+allure-pytest==2.16.0
+pydantic==2.13.4
