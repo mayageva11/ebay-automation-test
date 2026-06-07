@@ -86,7 +86,11 @@ The Allure dashboard shows:
 - Downloadable Playwright Trace (drop `artifacts/trace.zip` on
   https://trace.playwright.dev to replay the full session)
 
-> ![Allure Report](docs/allure_report_screenshot.png)
+> ![Allure Report - Test Suite Overview](docs/Screenshot_2026-06-07_at_10_58_11.png)
+![Allure Report - Add to Cart Steps](docs/Screenshot_2026-06-07_at_10_59_49.png)
+![Allure Report - Cart Total](docs/Screenshot_2026-06-07_at_11_00_15.png)
+![Allure Report - HP Test](docs/Screenshot_2026-06-07_at_11_03_14.png)
+![Playwright Trace](docs/Screenshot_2026-06-07_at_11_04_16.png)
 
 ## Limitations & Assumptions
 
