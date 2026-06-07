@@ -91,6 +91,16 @@ The Allure dashboard shows:
 > `docs/allure_report_screenshot.png`, then replace this note with:
 > `![Allure Report](docs/allure_report_screenshot.png)`
 
+## Limitations & Assumptions
+
+- **Real login required** — the site does not support guest checkout. A registered account on `ecommerce-playground.lambdatest.io` is mandatory. Registration is free.
+- **Email verification** — the site requires email verification after registration. Unverified accounts cannot add items to cart.
+- **Currency** — all prices are parsed and compared in USD as displayed on the site. No currency conversion is performed.
+- **Stock availability** — if all items returned by a search are out of stock or have no valid variant options, the test is skipped with a clear error message. This is expected behaviour, not a bug.
+- **Budget threshold** — `assertCartTotalNotExceeds` uses the number of items actually added to the cart (not the number of URLs found). Items that failed due to stock or missing variants do not inflate the threshold, making the assertion stricter and more meaningful.
+- **Site stability** — `ecommerce-playground.lambdatest.io` is a shared demo environment. Occasional downtime or slow responses may cause flaky runs unrelated to the framework.
+- **Viewport** — tests run at 1440×900 to ensure the Bootstrap `lg` breakpoint is active and all buttons are visible.
+
 ## Project structure
 
 ```
