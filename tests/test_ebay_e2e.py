@@ -50,6 +50,12 @@ def test_ebay_e2e(page, test_data, query: str, max_price: float, limit: int):
         "Likely cause: a required product option (size/colour) was not selected, "
         "or the account email has not been verified yet."
     )
+    # The assignment signature uses urls.length as the item count.
+    # We intentionally use len(quantities) instead — the number of items
+    # actually added to the cart — because items that failed (out of stock,
+    # missing variants) should not inflate the budget threshold.
+    # Example: 5 URLs found, 3 added successfully → threshold = 3 × budget,
+    # not 5 × budget. This makes the assertion stricter and more meaningful.
     cart_page.assert_cart_total_not_exceeds(
         str(data.cart_url), data.budget_per_item, len(quantities)
     )
