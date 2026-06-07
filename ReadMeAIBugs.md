@@ -1,7 +1,5 @@
 # ReadMeAIBugs 
 
----
-
 ## Bug 1 — Unnecessary and Misleading Import
 
 **Problematic line:**
