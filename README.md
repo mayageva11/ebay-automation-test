@@ -23,7 +23,13 @@ That's it. All commands are in the `Makefile`.
 
 ## Before running — set your credentials
 
-Open `test_data.json` and replace the credentials with a registered account on `ecommerce-playground.lambdatest.io`:
+Copy the example file and fill in your details:
+
+```bash
+cp test_data.json.example test_data.json
+```
+
+Then open `test_data.json` and replace the credentials with a registered account on `ecommerce-playground.lambdatest.io`:
 
 ```json
 "credentials": {
@@ -34,6 +40,8 @@ Open `test_data.json` and replace the credentials with a registered account on `
 
 Register a free account at:
 `https://ecommerce-playground.lambdatest.io/index.php?route=account/register`
+
+> **Note:** `test_data.json` is git-ignored. Never commit real credentials.
 
 ## All available commands
 
