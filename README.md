@@ -86,10 +86,7 @@ The Allure dashboard shows:
 - Downloadable Playwright Trace (drop `artifacts/trace.zip` on
   https://trace.playwright.dev to replay the full session)
 
-> To include a report screenshot in this README, run the tests,
-> take a screenshot of the Allure HTML report, save it as
-> `docs/allure_report_screenshot.png`, then replace this note with:
-> `![Allure Report](docs/allure_report_screenshot.png)`
+> ![Allure Report](docs/allure_report_screenshot.png)
 
 ## Limitations & Assumptions
 
