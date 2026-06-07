@@ -13,7 +13,10 @@ logger = logging.getLogger(__name__)
 class ItemPage(BasePage):
     # Selectors verified against ecommerce-playground.lambdatest.io product pages
     ITEM_TITLE     = "h1"
-    SUCCESS_BANNER = ".alert-success, #cart-total"   # checked after add
+    # SUCCESS_BANNER = ".alert-success, #cart-total"
+    # Not used in the current JS-based add flow (cart.add() reads the server
+    # JSON response directly). Kept as a fallback selector for future
+    # UI-based verification if the JS approach is ever replaced.
     OPTION_SELECTS = "select[name^='option']"        # OpenCart variant dropdowns
     QTY_INPUT      = "input[name='quantity']"
 

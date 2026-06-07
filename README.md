@@ -69,6 +69,28 @@ After a run, open the trace in the browser-based viewer:
 
 The trace shows every action, network request, and DOM snapshot for the full session.
 
+## Test Report
+
+Run the tests and open the report with:
+
+```bash
+make test
+make report
+```
+
+The Allure dashboard shows:
+- Full test list with pass/fail status per parametrized scenario
+- Every step expanded with its screenshot attached inline
+- Text log of each item added to cart
+- Environment panel (URL, browser, Python version)
+- Downloadable Playwright Trace (drop `artifacts/trace.zip` on
+  https://trace.playwright.dev to replay the full session)
+
+> To include a report screenshot in this README, run the tests,
+> take a screenshot of the Allure HTML report, save it as
+> `docs/allure_report_screenshot.png`, then replace this note with:
+> `![Allure Report](docs/allure_report_screenshot.png)`
+
 ## Project structure
 
 ```
